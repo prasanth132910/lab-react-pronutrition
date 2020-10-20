@@ -7,10 +7,14 @@ export default class FoodBox extends Component {
     // eslint-disable-next-line no-useless-constructor
     constructor(props) {
         super(props)
+        // state holds all the ietms selected by user
         this.state = {}
         this.deleteItem = this.deleteItem.bind(this)
     }
 
+
+    //when user clicks on add button beside the fooditem 
+    // then this functions identifies that item and add that item to state
     getValue = (e) => {
         const count = parseInt(document.querySelector(`.${e.target.name}`).value)
         if (count) {
@@ -19,6 +23,7 @@ export default class FoodBox extends Component {
         }
     }
 
+    // when use click on cross button it deletes the item from state
     deleteItem(e) {
         let name = e.target.name
         this.setState(prevState => {
@@ -28,6 +33,7 @@ export default class FoodBox extends Component {
 
     }
 
+    // function renders the item and its caloris by grabbing the items from state
     getCalories = () => {
         let calorieItems = []
         let count = 1
@@ -45,6 +51,8 @@ export default class FoodBox extends Component {
         return calorieItems
     }
 
+    // on the basis of items selected by user function calculates the total calories
+    // by calculation sum of all selected items
     getTotalCaloriesCount = () => {
 
         let count = 0
@@ -66,6 +74,11 @@ export default class FoodBox extends Component {
         }
 
         return (
+            /*
+            * box -> renders top 4 list of items for user to select
+            * calories -> renders the item and its calories by grabbing state
+            *              which holds all the itesm selected by user 
+            */
             <div className="food-container" >
                 <div className="box">
                     {this.props.items.map(item => <FoodItem key={item.id} item={item} getValue={this.getValue} />)}

@@ -9,6 +9,8 @@ export default class App extends Component {
         this.state = { items: [...foodData.items].slice(0, 4) }
     }
 
+    // when the user tries to search any particular item this function retreives those items
+    // and shows user those items
     search = (e) => {
         const foodItem = e.target.value
         this.setState(() => {
